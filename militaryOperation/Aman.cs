@@ -1,11 +1,14 @@
+using militaryOperation.Enemy;
+
+
 namespace militaryOperation.Aman
 {
     public class Aman
     {
         DatabaseAman Database = new();
-        public void IntelligenceInformation()
+        public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
         {
-            Console.WriteLine("Intelligence information added to the database successfully!!");
+            Database.AddToList(terroristObject, lastLocation);
         }
 
         protected List<IntelligenceInformation> GetIntelligenceInformationList()
@@ -34,12 +37,12 @@ namespace militaryOperation.Aman
             return ListIntelligenceInformation;
         }
 
-        
-        // public void Add()
-        // {
-        //     return ListIntelligenceInformation;
-        // }
-        
+        public void AddToList(Terrorist terroristObject, string lastLocation)
+        {
+            IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
+            ListIntelligenceInformation.Add(Information);
+        }
+
     }
 
 }
