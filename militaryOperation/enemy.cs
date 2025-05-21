@@ -21,7 +21,7 @@ namespace militaryOperation.Enemy
             Console.WriteLine("===== terrorist added successfully ======");
             Console.WriteLine($"Name: {terrorist.Name}");
             Console.WriteLine($"Rank: {terrorist.Rank}");
-            Console.WriteLine($"Status: {terrorist.Status}");
+            Console.WriteLine($"Status: {terrorist.IsAlive}");
         }
     }
 
@@ -29,13 +29,13 @@ namespace militaryOperation.Enemy
     {
         public string Name;
         public int Rank;
-        public bool Status;
+        public bool IsAlive;
         public List<string> WeaponList;
         public Terrorist(string name, int rank, bool status, List<string> weaponList)
         {
             Name = name;
             Rank = rank;
-            Status = status;
+            IsAlive = status;
             WeaponList = weaponList;
         }
     }

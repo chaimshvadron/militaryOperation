@@ -6,44 +6,29 @@ namespace militaryOperation.AmanManagement
     public class Aman
     {
         DatabaseAman Database = new();
+        Hamas hamas;
+        List<Terrorist> TerroristIist;
+
+        public Aman(Hamas hamasObject)
+        {
+            hamas = hamasObject;
+            TerroristIist = hamas.ListTerrorist;
+        }
+
         public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
         {
-            IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
+            IntelInformation Information = new IntelInformation(terroristObject, lastLocation);
             Database.AddToList(Information);
         }
 
-        protected List<IntelligenceInformation> GetIntelligenceInformationList()
+        public List<IntelInformation> GetIntelligenceInformationList()
         {
             return Database.Get();
         }
-    }
 
-    public class IntelligenceInformation
-    {
-        public Terrorist Terrorist;
-        public string LastLocation;
-        public DateTime Timestamp = DateTime.UtcNow;
-        public IntelligenceInformation(Terrorist terroristObject, string lastLocation)
+        public void GetTheLatestInformation()
         {
-            Terrorist = terroristObject;
-            LastLocation = lastLocation;
-        }
-    }
 
-    public class DatabaseAman
-    {
-        List<IntelligenceInformation> ListIntelligenceInformation { get; } = new();
-        public List<IntelligenceInformation> Get()
-        {
-            return ListIntelligenceInformation;
-        }
-
-        public void AddToList(IntelligenceInformation Information)
-        {
-            ListIntelligenceInformation.Add(Information);
-            Console.WriteLine("===== Ad information added successfully ======");
-            Console.WriteLine($"Name: {Information.Terrorist.Name}");
-            Console.WriteLine($"Date: {Information.Timestamp}");
         }
     }
 }
