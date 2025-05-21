@@ -1,7 +1,4 @@
-using militaryOperation.Enemy;
-
-
-namespace militaryOperation.AmanManagement
+namespace MilitaryOperation.Models
 {
     public class Aman
     {
