@@ -1,7 +1,7 @@
 using militaryOperation.Enemy;
 
 
-namespace militaryOperation.Aman
+namespace militaryOperation.AmanManagement
 {
     public class Aman
     {
@@ -41,6 +41,9 @@ namespace militaryOperation.Aman
         {
             IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
             ListIntelligenceInformation.Add(Information);
+            Console.WriteLine("===== Ad information added successfully ======");
+            Console.WriteLine($"Name: {terroristObject.Name}");
+            Console.WriteLine($"Date: {Information.Timestamp}");
         }
 
     }

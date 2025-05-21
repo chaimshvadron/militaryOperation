@@ -1,5 +1,4 @@
-﻿
-namespace militaryOperation.main
+﻿namespace militaryOperation.main
 {
-
+    
 }
