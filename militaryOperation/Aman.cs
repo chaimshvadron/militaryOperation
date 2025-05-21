@@ -1,15 +1,20 @@
 namespace militaryOperation.Aman
 {
-    class Aman
+    public class Aman
     {
-
+        DatabaseAman Database = new();
         public void IntelligenceInformation()
         {
             Console.WriteLine("Intelligence information added to the database successfully!!");
         }
+
+        protected List<IntelligenceInformation> GetIntelligenceInformationList()
+        {
+            return Database.Get();
+        }
     }
 
-    class IntelligenceInformation
+    public class IntelligenceInformation
     {
         public Terrorist Terrorist;
         public string LastLocation;
@@ -21,13 +26,20 @@ namespace militaryOperation.Aman
         }
     }
 
-    class DatabaseAman
+    public class DatabaseAman
     {
+        List<IntelligenceInformation> ListIntelligenceInformation { get; } = new();
+        public List<IntelligenceInformation> Get()
+        {
+            return ListIntelligenceInformation;
+        }
 
+        
+        // public void Add()
+        // {
+        //     return ListIntelligenceInformation;
+        // }
+        
     }
-    
 
-    internal class Terrorist
-    {
-    }
 }
