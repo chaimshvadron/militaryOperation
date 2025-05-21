@@ -1,5 +1,4 @@
-﻿using MilitaryOperation.IdfManagement;
-namespace MilitaryOperation.AttackManagement
+﻿namespace MilitaryOperation.Models
 {
     public class AttackOptions
     {
