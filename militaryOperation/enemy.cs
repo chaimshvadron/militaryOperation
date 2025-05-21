@@ -1,4 +1,4 @@
-namespace militaryOperation.Enemy
+namespace MilitaryOperation.Enemy
 {
     public class Enemy
     {
