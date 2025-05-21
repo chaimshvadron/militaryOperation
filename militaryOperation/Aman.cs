@@ -8,7 +8,8 @@ namespace militaryOperation.AmanManagement
         DatabaseAman Database = new();
         public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
         {
-            Database.AddToList(terroristObject, lastLocation);
+            IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
+            Database.AddToList(Information);
         }
 
         protected List<IntelligenceInformation> GetIntelligenceInformationList()
@@ -37,15 +38,12 @@ namespace militaryOperation.AmanManagement
             return ListIntelligenceInformation;
         }
 
-        public void AddToList(Terrorist terroristObject, string lastLocation)
+        public void AddToList(IntelligenceInformation Information)
         {
-            IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
             ListIntelligenceInformation.Add(Information);
             Console.WriteLine("===== Ad information added successfully ======");
-            Console.WriteLine($"Name: {terroristObject.Name}");
+            Console.WriteLine($"Name: {Information.Terrorist.Name}");
             Console.WriteLine($"Date: {Information.Timestamp}");
         }
-
     }
-
 }
