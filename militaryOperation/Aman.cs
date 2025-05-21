@@ -1,15 +1,24 @@
-namespace militaryOperation.Aman
-{
-    class Aman
-    {
+using militaryOperation.Enemy;
 
-        public void IntelligenceInformation()
+
+namespace militaryOperation.AmanManagement
+{
+    public class Aman
+    {
+        DatabaseAman Database = new();
+        public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
         {
-            Console.WriteLine("Intelligence information added to the database successfully!!");
+            IntelligenceInformation Information = new IntelligenceInformation(terroristObject, lastLocation);
+            Database.AddToList(Information);
+        }
+
+        protected List<IntelligenceInformation> GetIntelligenceInformationList()
+        {
+            return Database.Get();
         }
     }
 
-    class IntelligenceInformation
+    public class IntelligenceInformation
     {
         public Terrorist Terrorist;
         public string LastLocation;
@@ -21,13 +30,20 @@ namespace militaryOperation.Aman
         }
     }
 
-    class DatabaseAman
+    public class DatabaseAman
     {
+        List<IntelligenceInformation> ListIntelligenceInformation { get; } = new();
+        public List<IntelligenceInformation> Get()
+        {
+            return ListIntelligenceInformation;
+        }
 
-    }
-    
-
-    internal class Terrorist
-    {
+        public void AddToList(IntelligenceInformation Information)
+        {
+            ListIntelligenceInformation.Add(Information);
+            Console.WriteLine("===== Ad information added successfully ======");
+            Console.WriteLine($"Name: {Information.Terrorist.Name}");
+            Console.WriteLine($"Date: {Information.Timestamp}");
+        }
     }
 }
