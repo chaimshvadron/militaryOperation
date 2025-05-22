@@ -1,19 +1,17 @@
-using militaryOperation.AmanManagement;
-using militaryOperation.Enemy;
 
-namespace militaryOperation.IntelligenceAnalysis
+namespace MilitaryOperation.Models
 {
     public class IntelAnalyzer
     {
-        public Dictionary<Terrorist, List<IntelligenceInformation>> GroupIntelligenceByTerrorist(List<IntelligenceInformation> intelligenceReports)
+        public Dictionary<Terrorist, List<IntelInformation>> GroupIntelligenceByTerrorist(List<IntelInformation> intelligenceReports)
         {
-            Dictionary<Terrorist, List<IntelligenceInformation>> groupedReports = new();
+            Dictionary<Terrorist, List<IntelInformation>> groupedReports = new();
 
-            foreach (IntelligenceInformation report in intelligenceReports)
+            foreach (IntelInformation report in intelligenceReports)
             {
                 if (!groupedReports.ContainsKey(report.Terrorist))
                 {
-                    groupedReports[report.Terrorist] = new List<IntelligenceInformation>();
+                    groupedReports[report.Terrorist] = new List<IntelInformation>();
                 }
                 groupedReports[report.Terrorist].Add(report);
             }
@@ -22,12 +20,16 @@ namespace militaryOperation.IntelligenceAnalysis
         }
 
 
-        public Terrorist GetMostReportedTerrorist(List<IntelligenceInformation> IntelligenceInformation)
+
+        public Terrorist GetMostReportedTerrorist(List<IntelInformation> IntelInformation)
+
         {
             int max = 0;
             Terrorist mostReported = null ;
+          
+            foreach (KeyValuePair<Terrorist, List<IntelInformation>> group in GroupIntelligenceByTerrorist(IntelInformation))
 
-            foreach (KeyValuePair<Terrorist, List<IntelligenceInformation>> group in GroupIntelligenceByTerrorist(IntelligenceInformation))
+
             {
                 if (group.Value.Count > max)
                 {
