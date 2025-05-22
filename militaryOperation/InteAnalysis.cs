@@ -1,5 +1,4 @@
 
-
 namespace MilitaryOperation.Models
 {
     public class IntelAnalyzer
@@ -21,12 +20,16 @@ namespace MilitaryOperation.Models
         }
 
 
+
         public Terrorist GetMostReportedTerrorist(List<IntelInformation> IntelInformation)
+
         {
             int max = 0;
             Terrorist mostReported = null ;
-
+          
             foreach (KeyValuePair<Terrorist, List<IntelInformation>> group in GroupIntelligenceByTerrorist(IntelInformation))
+
+
             {
                 if (group.Value.Count > max)
                 {
