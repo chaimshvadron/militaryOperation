@@ -1,7 +1,5 @@
-using militaryOperation.Enemy;
 
-
-namespace militaryOperation.AmanManagement
+namespace MilitaryOperation.Models
 {
     public class IntelInformation
     {
@@ -56,5 +54,11 @@ namespace militaryOperation.AmanManagement
         string OfficerName;
         IntelInformation LatestIntelligence;
         // ???? AmmunitionUsed;
+
+        public Dictionary<string, string> CancellationToken()
+        {
+            
+            return new Dictionary<string, string>() { { "ss", "ss" } };
+        }
     }
 }

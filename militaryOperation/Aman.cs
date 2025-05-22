@@ -4,12 +4,10 @@ namespace MilitaryOperation.Models
     {
         DatabaseAman Database = new();
         Hamas hamas;
-        List<Terrorist> TerroristIist;
 
         public Aman(Hamas hamasObject)
         {
             hamas = hamasObject;
-            TerroristIist = hamas.ListTerrorist;
         }
 
         public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
