@@ -1,4 +1,3 @@
-
 namespace MilitaryOperation.Models
 {
     public class IntelAnalyzer
@@ -19,14 +18,13 @@ namespace MilitaryOperation.Models
             return groupedReports;
         }
 
-
-
-        public Terrorist GetMostReportedTerrorist(List<IntelInformation> IntelInformation)
+        
+        public Terrorist? GetMostReportedTerrorist(List<IntelInformation> IntelInformation)
 
         {
             int max = 0;
-            Terrorist mostReported = null ;
-          
+            Terrorist? mostReported = null;
+
             foreach (KeyValuePair<Terrorist, List<IntelInformation>> group in GroupIntelligenceByTerrorist(IntelInformation))
 
 
@@ -37,8 +35,49 @@ namespace MilitaryOperation.Models
                     mostReported = group.Key;
                 }
             }
-
             return mostReported;
         }
+
+        public Terrorist? GetMostDangerousTerrorist(List<Terrorist> terroristList)
+        {
+            if (terroristList == null || terroristList.Count == 0)
+                return null;
+
+            Dictionary<string, int> weaponPoints = new()
+            {
+                {"Knife", 1},
+                {"Gun", 2},
+                {"M16", 3},
+                {"AK47", 3}
+            };
+
+            Terrorist? mostDangerous = null;
+            int maxQualityScore = 0;
+
+            foreach (var terrorist in terroristList)
+            {
+                int totalWeaponPoints = 0;
+                if (terrorist.WeaponList != null)
+                {
+                    foreach (var weapon in terrorist.WeaponList)
+                    {
+                        if (weaponPoints.TryGetValue(weapon, out int points))
+                            totalWeaponPoints += points;
+                    }
+                }
+                int qualityScore = terrorist.Rank * totalWeaponPoints;
+                if (qualityScore > maxQualityScore)
+                {
+                    maxQualityScore = qualityScore;
+                    mostDangerous = terrorist;
+                }
+            }
+            
+            return mostDangerous;
+        }
+
+        
+
+
     }
 }
