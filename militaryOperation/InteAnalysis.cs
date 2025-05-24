@@ -76,8 +76,63 @@ namespace MilitaryOperation.Models
             return mostDangerous;
         }
 
-        
+        public void MostDangerousTerrorist(List<Terrorist> terroristList, List<IntelInformation> intelInformationList)
+        {
+            if (terroristList == null || terroristList.Count == 0 || intelInformationList == null || intelInformationList.Count == 0)
+            {
+                Console.WriteLine("No data available.");
+                return;
+            }
 
+            Dictionary<string, int> weaponPoints = new()
+            {
+                {"Knife", 1},
+                {"Gun", 2},
+                {"M16", 3},
+                {"AK47", 3}
+            };
+
+            var grouped = GroupIntelligenceByTerrorist(intelInformationList);
+            Terrorist? mostDangerous = null;
+            int maxQualityScore = 0;
+            IntelInformation? latestIntel = null;
+
+            foreach (var terrorist in terroristList)
+            {
+                int totalWeaponPoints = 0;
+                if (terrorist.WeaponList != null)
+                {
+                    foreach (var weapon in terrorist.WeaponList)
+                    {
+                        if (weaponPoints.TryGetValue(weapon, out int points))
+                            totalWeaponPoints += points;
+                    }
+                }
+                int qualityScore = terrorist.Rank * totalWeaponPoints;
+                if (qualityScore > maxQualityScore)
+                {
+                    maxQualityScore = qualityScore;
+                    mostDangerous = terrorist;
+                    if (grouped.TryGetValue(terrorist, out var reports) && reports.Count > 0)
+                        latestIntel = reports.OrderByDescending(r => r.Timestamp).First();
+                    else
+                        latestIntel = null;
+                }
+            }
+
+            if (mostDangerous != null)
+            {
+                Console.WriteLine($"Most Dangerous Terrorist: {mostDangerous.Name}");
+                Console.WriteLine($"Rank: {mostDangerous.Rank}");
+                Console.WriteLine($"Quality Score: {maxQualityScore}");
+                Console.WriteLine($"Weapons: {string.Join(", ", mostDangerous.WeaponList ?? new List<string>())}");
+                Console.WriteLine($"Latest Known Location: {(latestIntel != null ? latestIntel.LastLocation : "Unknown")}");
+            }
+            else
+            {
+                Console.WriteLine("No dangerous terrorist found.");
+            }
+        }
 
     }
 }
