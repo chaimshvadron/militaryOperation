@@ -76,13 +76,8 @@ namespace MilitaryOperation.Models
             return mostDangerous;
         }
 
-        public void MostDangerousTerrorist(List<Terrorist> terroristList, List<IntelInformation> intelInformationList)
+        public IntelInformation? MostDangerousTerrorist(List<IntelInformation> intelInformationList)
         {
-            if (terroristList == null || terroristList.Count == 0 || intelInformationList == null || intelInformationList.Count == 0)
-            {
-                Console.WriteLine("No data available.");
-                return;
-            }
 
             Dictionary<string, int> weaponPoints = new()
             {
@@ -92,17 +87,19 @@ namespace MilitaryOperation.Models
                 {"AK47", 3}
             };
 
-            var grouped = GroupIntelligenceByTerrorist(intelInformationList);
+            Dictionary<Terrorist, List<IntelInformation>> grouped = GroupIntelligenceByTerrorist(intelInformationList);
             Terrorist? mostDangerous = null;
             int maxQualityScore = 0;
             IntelInformation? latestIntel = null;
 
-            foreach (var terrorist in terroristList)
+            foreach (KeyValuePair<Terrorist, List<IntelInformation>> pair in grouped)
             {
+                Terrorist terrorist = pair.Key;
+                List<IntelInformation> reports = pair.Value;
                 int totalWeaponPoints = 0;
                 if (terrorist.WeaponList != null)
                 {
-                    foreach (var weapon in terrorist.WeaponList)
+                    foreach (string weapon in terrorist.WeaponList)
                     {
                         if (weaponPoints.TryGetValue(weapon, out int points))
                             totalWeaponPoints += points;
@@ -113,25 +110,32 @@ namespace MilitaryOperation.Models
                 {
                     maxQualityScore = qualityScore;
                     mostDangerous = terrorist;
-                    if (grouped.TryGetValue(terrorist, out var reports) && reports.Count > 0)
-                        latestIntel = reports.OrderByDescending(r => r.Timestamp).First();
-                    else
-                        latestIntel = null;
+                    
+                    IntelInformation? lastReport = null;
+                    foreach (IntelInformation report in reports)
+                    {
+                        if (lastReport == null || report.Timestamp > lastReport.Timestamp)
+                        {
+                            lastReport = report;
+                        }
+                    }
+                    latestIntel = lastReport;
                 }
             }
 
-            if (mostDangerous != null)
+            if (mostDangerous != null && latestIntel != null)
             {
                 Console.WriteLine($"Most Dangerous Terrorist: {mostDangerous.Name}");
                 Console.WriteLine($"Rank: {mostDangerous.Rank}");
                 Console.WriteLine($"Quality Score: {maxQualityScore}");
                 Console.WriteLine($"Weapons: {string.Join(", ", mostDangerous.WeaponList ?? new List<string>())}");
-                Console.WriteLine($"Latest Known Location: {(latestIntel != null ? latestIntel.LastLocation : "Unknown")}");
+                Console.WriteLine($"Latest Known Location: {latestIntel.LastLocation}");
             }
             else
             {
                 Console.WriteLine("No dangerous terrorist found.");
             }
+            return latestIntel;
         }
 
     }
