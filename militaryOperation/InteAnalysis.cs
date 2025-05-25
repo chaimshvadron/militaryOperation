@@ -38,43 +38,6 @@ namespace MilitaryOperation.Models
             return mostReported;
         }
 
-        public Terrorist? GetMostDangerousTerrorist(List<Terrorist> terroristList)
-        {
-            if (terroristList == null || terroristList.Count == 0)
-                return null;
-
-            Dictionary<string, int> weaponPoints = new()
-            {
-                {"Knife", 1},
-                {"Gun", 2},
-                {"M16", 3},
-                {"AK47", 3}
-            };
-
-            Terrorist? mostDangerous = null;
-            int maxQualityScore = 0;
-
-            foreach (var terrorist in terroristList)
-            {
-                int totalWeaponPoints = 0;
-                if (terrorist.WeaponList != null)
-                {
-                    foreach (var weapon in terrorist.WeaponList)
-                    {
-                        if (weaponPoints.TryGetValue(weapon, out int points))
-                            totalWeaponPoints += points;
-                    }
-                }
-                int qualityScore = terrorist.Rank * totalWeaponPoints;
-                if (qualityScore > maxQualityScore)
-                {
-                    maxQualityScore = qualityScore;
-                    mostDangerous = terrorist;
-                }
-            }
-            
-            return mostDangerous;
-        }
 
         public IntelInformation? MostDangerousTerrorist(List<IntelInformation> intelInformationList)
         {
