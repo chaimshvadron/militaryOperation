@@ -1,29 +1,43 @@
-namespace MilitaryOperation.Models
+namespace Military_control_system
 {
-    public class Aman
+    class Aman
     {
-        DatabaseAman Database = new();
-        Hamas hamas;
-
-        public Aman(Hamas hamasObject)
+        public Database Database;
+        public Aman(Database database)
         {
-            hamas = hamasObject;
+            Database = database;
         }
 
-        public void AddIntelligenceInformation(Terrorist terroristObject, string lastLocation)
+        public int mostDangerousTerrorist()
         {
-            IntelInformation Information = new IntelInformation(terroristObject, lastLocation);
-            Database.AddToList(Information);
+            int IdTerrorist = 1;
+            for (int id = 1; id < Database.databaseIntelligence.Count; id++)
+            {
+                Terrorist terrorist = Database.databaseTerrorist[id];
+                if (terrorist.IsAlive && terrorist.QualityScore() > Database.GetTerroristBiId(IdTerrorist).QualityScore())
+                {
+                    IdTerrorist = id;
+                    Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Quality Score: {terrorist.QualityScore()}");
+                }
+            }
+            return IdTerrorist;
         }
 
-        public List<IntelInformation> GetIntelligenceInformationList()
+        public int mostInformation()
         {
-            return Database.Get();
+            int IdTerrorist = 1;
+            for (int id = 1; id < Database.databaseIntelligence.Count; id++)
+            {
+                 Terrorist terrorist = Database.databaseTerrorist[id];
+                if (terrorist.IsAlive && Database.databaseIntelligence[id].Count > Database.databaseIntelligence[IdTerrorist].Count)
+                {
+                    IdTerrorist = id;
+                    Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Intelligence: {Database.databaseIntelligence[id].Count}");
+                }
+            }
+            return IdTerrorist;
         }
 
-        public void GetTheLatestInformation()
-        {
-
-        }
     }
+    
 }
