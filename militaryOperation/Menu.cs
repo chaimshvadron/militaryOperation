@@ -94,6 +94,5 @@ namespace Military_control_system
                 Console.ReadLine();
             }
         }
-
     }
 }

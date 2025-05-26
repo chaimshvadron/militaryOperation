@@ -48,11 +48,6 @@ namespace Military_control_system
         public void AttackExecution()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
-            if (IdTerrorist == 0)
-            {
-                Console.WriteLine(" ===== No dangerous terrorist found =====");
-                return;
-            }
             attack_Management.AttackExecution(IdTerrorist);
 
         }

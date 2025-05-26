@@ -16,7 +16,7 @@ namespace Military_control_system
             {
                 
                 Terrorist terrorist = Database.databaseTerrorist[id];
-                Console.WriteLine(terrorist.Name + " " +terrorist.QualityScore() + " " + terrorist.Rank);
+
                 if (terrorist.IsAlive && terrorist.QualityScore() > Score)
                 {
                     IdTerrorist = id;
