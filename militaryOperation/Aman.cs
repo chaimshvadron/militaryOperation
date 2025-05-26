@@ -10,14 +10,18 @@ namespace Military_control_system
 
         public int mostDangerousTerrorist()
         {
+            int Score = 0;
             int IdTerrorist = 1;
-            for (int id = 1; id < Database.databaseIntelligence.Count; id++)
+            for (int id = 1; id < Database.databaseTerrorist.Count; id++)
             {
+                
                 Terrorist terrorist = Database.databaseTerrorist[id];
-                if (terrorist.IsAlive && terrorist.QualityScore() > Database.GetTerroristBiId(IdTerrorist).QualityScore())
+                Console.WriteLine(terrorist.Name + " " +terrorist.QualityScore() + " " + terrorist.Rank);
+                if (terrorist.IsAlive && terrorist.QualityScore() > Score)
                 {
                     IdTerrorist = id;
-                    Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Quality Score: {terrorist.QualityScore()}");
+                    Score = terrorist.QualityScore();
+                    // Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Quality Score: {terrorist.QualityScore()}");
                 }
             }
             return IdTerrorist;
@@ -28,7 +32,7 @@ namespace Military_control_system
             int IdTerrorist = 1;
             for (int id = 1; id < Database.databaseIntelligence.Count; id++)
             {
-                 Terrorist terrorist = Database.databaseTerrorist[id];
+                Terrorist terrorist = Database.databaseTerrorist[id];
                 if (terrorist.IsAlive && Database.databaseIntelligence[id].Count > Database.databaseIntelligence[IdTerrorist].Count)
                 {
                     IdTerrorist = id;
@@ -38,6 +42,19 @@ namespace Military_control_system
             return IdTerrorist;
         }
 
+    }
+    
+    class IntelInformation
+    {
+        public int Id;
+        public string LastLocation;
+        public DateTime Timestamp = DateTime.UtcNow;
+        public IntelInformation(int IdTerrorist, string lastLocation)
+        {
+            Id = IdTerrorist;
+            LastLocation = lastLocation;
+        }
+        
     }
     
 }

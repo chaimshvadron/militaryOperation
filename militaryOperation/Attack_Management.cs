@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 
 namespace Military_control_system
 {
@@ -15,36 +14,60 @@ namespace Military_control_system
 
         }
 
+        // public void AttackExecution(int terroristId)
+        // {
+        //     DateTime time = DateTime.Now;
+        //     Terrorist Terrorist = Database.GetTerroristBiId(terroristId);
+        //     IntelInformation LatestIntelligence = Database.LatestInformation(terroristId);
+        //     string target = LatestIntelligence.LastLocation;
+        //     AttackSystem? AttackSystem = ChooseWeaponSystem(target);
+        //     if (AttackSystem != null)
+        //     {
+        //         bool attac = AttackSystem.ExecuteStrike(target);
+        //         if (attac)
+        //         {
+        //             Terrorist.IsAlive = false;
+        //             PrintSuccessMessage(target, time, Terrorist); 
+        //         }
+        //     }
+        // }
+
         public void AttackExecution(int terroristId)
         {
             DateTime time = DateTime.Now;
             Terrorist Terrorist = Database.GetTerroristBiId(terroristId);
             IntelInformation LatestIntelligence = Database.LatestInformation(terroristId);
             string target = LatestIntelligence.LastLocation;
-            AttackSystem? AttackSystem = ChooseWeaponSystem(target);
-            if (AttackSystem != null)
-            {
-                bool attac = AttackSystem.ExecuteStrike(target);
-                if (attac)
-                {
-                    Terrorist.IsAlive = false;
-                    PrintSuccessMessage(target, time, Terrorist); 
-                }
-            }
-        }
 
-        public AttackSystem? ChooseWeaponSystem(string target)
-        {
             foreach (AttackSystem attackSystem in Force.attackSystems)
             {
                 if (attackSystem.TargetTypeAndWeapon.ContainsKey(target))
                 {
-                    return attackSystem;
+                    bool attac = attackSystem.ExecuteStrike(target);
+                    if (attac)
+                    {
+                        Terrorist.IsAlive = false;
+                        PrintSuccessMessage(target, time, Terrorist);
+                        return;
+                    }
                 }
             }
             Console.WriteLine("No suitable weapon system found!! ");
-            return null;
+
         }
+
+        // public AttackSystem? ChooseWeaponSystem(string target)
+        // {
+        //     foreach (AttackSystem attackSystem in Force.attackSystems)
+        //     {
+        //         if (attackSystem.TargetTypeAndWeapon.ContainsKey(target))
+        //         {
+        //             return attackSystem;
+        //         }
+        //     }
+        //     Console.WriteLine("No suitable weapon system found!! ");
+        //     return null;
+        // }
         public void PrintSuccessMessage(string target, DateTime time, Terrorist terrorist)
         {
             Console.ForegroundColor = ConsoleColor.Green;

@@ -17,7 +17,6 @@ namespace Military_control_system
 
             return new() { artillery_1, artillery_2, drone_1, drone_2, f16_1, f16_2, f16_3 };
 
-
         }
 
         public static void InitializeDatabase(Database db, Organization organizations)

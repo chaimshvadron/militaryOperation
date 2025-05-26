@@ -11,6 +11,11 @@
             string officerName = Console.ReadLine();
 
             ControlSystem controlSystem = new(Idf,Hamas, officerName);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n Control system activated\n");
+            Console.ResetColor();
+            
             new Menu(controlSystem).MenuActivation();
         }   
     }    

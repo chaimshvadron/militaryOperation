@@ -24,10 +24,11 @@ namespace Military_control_system
                 QualityScore += Weapon switch
                 {
                     "knife" => 1,
-                    "gun" => 2,
-                    "AK-47" or "M16" => 3,
-                    "RPG" => 4,
-                    _ => 0
+                    "gun" or "Pistol" or "Grenade"=> 2,
+                    "AK-47" or "M16" or "Sniper" => 3,
+                    "RPG" or "Explosives"=> 4,
+                    "Machine Gun" => 5,
+                    _ => 1
                 };
             }
             return QualityScore * Rank;
