@@ -36,7 +36,7 @@ namespace Military_control_system
                 Console.Write("Select an option (1-6): ");
                 Console.ResetColor();
 
-                string input = Console.ReadLine();
+                string input = Console.ReadLine()!;
                 Console.WriteLine();
 
                 switch (input)
