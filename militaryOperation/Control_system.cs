@@ -33,6 +33,11 @@ namespace Military_control_system
         public void TargetPrioritization()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
+            if (IdTerrorist == 0)
+            {
+                Console.WriteLine(" ===== No dangerous terrorist found =====");
+                return;
+            }
             Terrorist terrorist = database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The most dangerous terrorist =======");
@@ -43,6 +48,11 @@ namespace Military_control_system
         public void AttackExecution()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
+            if (IdTerrorist == 0)
+            {
+                Console.WriteLine(" ===== No dangerous terrorist found =====");
+                return;
+            }
             attack_Management.AttackExecution(IdTerrorist);
 
         }

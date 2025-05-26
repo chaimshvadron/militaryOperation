@@ -11,7 +11,7 @@ namespace Military_control_system
         public int mostDangerousTerrorist()
         {
             int Score = 0;
-            int IdTerrorist = 1;
+            int IdTerrorist = 0;
             for (int id = 1; id < Database.databaseTerrorist.Count; id++)
             {
                 
