@@ -16,7 +16,7 @@ namespace MilitaryControlSystem
 
         public void IntelligenceAnalysis()
         {
-            int IdTerrorist = aman.mostInformation();
+            int IdTerrorist = aman.MostInformation();
             Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The terrorist with the most intelligence =======");
@@ -47,7 +47,8 @@ namespace MilitaryControlSystem
         public void AttackExecution()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
-            attack_Management.AttackExecution(IdTerrorist);
+            Random random = new();
+            attack_Management.AttackExecution(IdTerrorist, random.Next(100,300), random.Next(1,5));
 
         }
 

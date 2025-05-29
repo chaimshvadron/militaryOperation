@@ -11,7 +11,7 @@ namespace MilitaryControlSystem
             Force = force;
         }
 
-        public void AttackExecution(int terroristId)
+        public void AttackExecution(int terroristId, int fuel, int ammunition)
         {
             DateTime time = DateTime.Now;
             Random random = new();
@@ -23,7 +23,7 @@ namespace MilitaryControlSystem
             {
                 if (attackSystem.TargetTypeAndWeapon.ContainsKey(target))
                 {
-                    bool attac = attackSystem.ExecuteStrike(target, random.Next(100,300), random.Next(1,5));
+                    bool attac = attackSystem.ExecuteStrike(target, fuel, ammunition);
                     if (attac)
                     {
                         terrorist.IsAlive = false;

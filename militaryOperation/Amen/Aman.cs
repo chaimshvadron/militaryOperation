@@ -20,7 +20,7 @@ namespace MilitaryControlSystem
             return IdTerrorist;
         }
 
-        public static int MostInformation()
+        public int MostInformation()
         {
             int IdTerrorist = -1;
             int mostInformation = 0;
