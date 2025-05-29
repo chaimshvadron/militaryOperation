@@ -1,19 +1,19 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
-    class Database
+    static class Database
     {
-        public Dictionary<int, Terrorist> databaseTerrorist = new(); // ID של מחבל 
-        public Dictionary<int, List<IntelInformation>> databaseIntelligence = new(); // ID של מחבל  ןמודיעין
+        static public Dictionary<int, Terrorist> databaseTerrorist = new(); // ID של מחבל 
+        static public Dictionary<int, List<IntelInformation>> databaseIntelligence = new(); // ID של מחבל  ןמודיעין
 
 
-        public int AddTerrorist(Terrorist terrorist)
+        static public int AddTerrorist(Terrorist terrorist)
         {
             int id = databaseTerrorist.Count + 1;
             databaseTerrorist.Add(id, terrorist);
             return id;
         }
 
-        public void AddIntelligence(int id, IntelInformation intelInformation)
+        static public void AddIntelligence(int id, IntelInformation intelInformation)
         {
             if (!databaseIntelligence.ContainsKey(id))
             {
@@ -22,12 +22,12 @@ namespace Military_control_system
             databaseIntelligence[id].Add(intelInformation);
         }
 
-        public Terrorist GetTerroristBiId(int id)
+        static public Terrorist GetTerroristBiId(int id)
         {
             return databaseTerrorist[id];
         }
 
-        public IntelInformation LatestInformation(int id)
+        static public IntelInformation LatestInformation(int id)
         {
             List<IntelInformation> ListIntelligence = databaseIntelligence[id];
             IntelInformation LatestInformation = ListIntelligence[0];

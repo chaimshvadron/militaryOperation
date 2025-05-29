@@ -1,9 +1,16 @@
-﻿namespace Military_control_system
+﻿namespace MilitaryControlSystem
 {
     class Program
     {
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+                Console.WriteLine("You must pass the API key as a command-line argument.");
+                return;
+            }
+            string apiKey = args[0];
+
             Organization Hamas = new("Hamas", "1987.12.10", "Yahya Sinwar");
             Organization Idf = new("IDF", "1948.5.26", "Herzi Halevi");
 

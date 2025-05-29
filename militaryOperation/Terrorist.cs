@@ -1,4 +1,4 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
     public class Terrorist
     {
@@ -32,36 +32,6 @@ namespace Military_control_system
                 };
             }
             return QualityScore * Rank;
-        }
-
-        public void Print()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"======= Tourist Information =======");
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Name: {Name}");
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Rank: {Rank}");
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Is Alive: {IsAlive}");
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Weapons:");
-            foreach (var weapon in Weapons)
-            {
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine($" - {weapon}");
-            }
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"Organization Name: {Organization.Name}");
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"==========================");
-            Console.ResetColor();
         }
 
     }

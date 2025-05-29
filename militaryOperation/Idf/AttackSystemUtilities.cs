@@ -1,0 +1,8 @@
+namespace MilitaryControlSystem
+{
+    class AttackSystemUtilities
+    {
+
+        
+    }
+}

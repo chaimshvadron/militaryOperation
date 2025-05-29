@@ -1,4 +1,4 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
     static class initialization
     {
@@ -19,10 +19,10 @@ namespace Military_control_system
 
         }
 
-        public static void InitializeDatabase(Database db, Organization organizations)
+        public static void InitializeDatabase(Organization organizations)
         {
             var terrorists = GenerateTerrorists(organizations);
-            PopulateDatabaseWithTerroristsAndIntel(terrorists, db);
+            PopulateDatabaseWithTerroristsAndIntel(terrorists);
 
         }
 
@@ -54,7 +54,7 @@ namespace Military_control_system
 
             return list;
         }
-        public static void PopulateDatabaseWithTerroristsAndIntel(List<Terrorist> terrorists, Database db)
+        public static void PopulateDatabaseWithTerroristsAndIntel(List<Terrorist> terrorists)
         {
             var random = new Random();
             var possibleLocations = new List<string>
@@ -68,14 +68,14 @@ namespace Military_control_system
 
             foreach (var terrorist in terrorists)
             {
-                int id = db.AddTerrorist(terrorist);
+                int id = Database.AddTerrorist(terrorist);
 
                 int intelCount = random.Next(1, 21);
                 for (int i = 0; i < intelCount; i++)
                 {
                     string location = possibleLocations[random.Next(possibleLocations.Count)];
                     var intel = new IntelInformation(id, location);
-                    db.AddIntelligence(id, intel);
+                    Database.AddIntelligence(id, intel);
                 }
             }
         }
