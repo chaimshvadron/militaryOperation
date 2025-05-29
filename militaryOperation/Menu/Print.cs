@@ -98,7 +98,7 @@ namespace MilitaryControlSystem
             Console.ResetColor();
         }
 
-        public static void PrintSuccessMessage(string target, DateTime time, Terrorist terrorist)
+        public static void PrintAttacsSuccessMessage(string target, DateTime time, Terrorist terrorist)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("========================================");
