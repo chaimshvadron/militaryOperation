@@ -25,8 +25,7 @@ namespace MilitaryControlSystem
 
         public bool CanStrike(int fuel, int ammunition)
         {
-            if (AmmunitionCapacity > ammunition && FuelSupply > fuel) return true;
-            else return false;
+            return AmmunitionCapacity > ammunition && FuelSupply > fuel;
         }
 
         public bool YaelAgainstTarget(string target)
