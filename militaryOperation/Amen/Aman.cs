@@ -9,11 +9,12 @@ namespace MilitaryControlSystem
             for (int id = 1; id < Database.databaseTerrorist.Count; id++)
             {
                 Terrorist terrorist = Database.databaseTerrorist[id];
+                int scoreTerorrist = terrorist.QualityScore();
 
-                if (terrorist.IsAlive && terrorist.QualityScore() > Score)
+                if (terrorist.IsAlive && scoreTerorrist > Score)
                 {
                     IdTerrorist = id;
-                    Score = terrorist.QualityScore();
+                    Score = scoreTerorrist;
                 }
             }
             return IdTerrorist;
