@@ -5,14 +5,13 @@ namespace MilitaryControlSystem
         public string Name { get; }
         public int AmmunitionCapacity { get; set; }
         public int FuelSupply { get; set; }
-        public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
+        abstract public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
 
-        public AttackSystem(string Name, int AmmunitionCapacity, int FuelSupply, Dictionary<string, string> TargetTypeAndWeapon)
+        public AttackSystem(string Name, int AmmunitionCapacity, int FuelSupply)
         {
             this.Name = Name;
             this.AmmunitionCapacity = AmmunitionCapacity;
             this.FuelSupply = FuelSupply;
-            this.TargetTypeAndWeapon = TargetTypeAndWeapon;
         }
 
         public void AddFuel(int fuel)
