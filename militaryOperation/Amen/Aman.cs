@@ -8,7 +8,6 @@ namespace MilitaryControlSystem
             int IdTerrorist = 0;
             for (int id = 1; id < Database.databaseTerrorist.Count; id++)
             {
-                
                 Terrorist terrorist = Database.databaseTerrorist[id];
 
                 if (terrorist.IsAlive && terrorist.QualityScore() > Score)

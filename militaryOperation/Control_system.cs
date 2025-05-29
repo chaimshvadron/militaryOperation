@@ -20,7 +20,7 @@ namespace MilitaryControlSystem
             Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The terrorist with the most intelligence =======");
-            terrorist.Print();
+            terrorist.Pront();
 
         }
         public void AttackAvailability()
@@ -40,7 +40,7 @@ namespace MilitaryControlSystem
             Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The most dangerous terrorist =======");
-            terrorist.Print();
+            terrorist.Pront();
 
         }
 
@@ -57,7 +57,7 @@ namespace MilitaryControlSystem
             foreach (var item in Database.databaseTerrorist)
             {
                 Console.WriteLine(item.Key);
-                item.Value.Print();
+                item.Value.Pront();
                 Console.WriteLine("====================");
                 foreach (var item2 in Database.databaseIntelligence[item.Key])
                 {

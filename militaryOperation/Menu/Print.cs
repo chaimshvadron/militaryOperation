@@ -4,13 +4,13 @@ namespace MilitaryControlSystem
     {
         public static void Pront(this Terrorist terrorist)
         {
-            System.Console.WriteLine("        =====> print terrorist <===== ");
-            System.Console.WriteLine($"Name:               ==>> {terrorist.Name}");
-            System.Console.WriteLine($"Organization:       ==>> {terrorist.Organization.Name}");
+            Console.WriteLine("        =====> Tourist Information <===== ");
+            Console.WriteLine($"Name:               ==>> {terrorist.Name}");
+            Console.WriteLine($"Organization:       ==>> {terrorist.Organization.Name}");
             Console.WriteLine($"num Weapons:        ==>> {terrorist.Weapons.Count}");
             Console.WriteLine($"IsAlive:            ==>> {terrorist.IsAlive}");
-
         }
+
         public static void Print(this Force force)
         {
             int Available = 0;
@@ -20,6 +20,7 @@ namespace MilitaryControlSystem
                 attack.Print();
             }
             Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"Organization: {force.Organization.Name}");
             Console.WriteLine($"The number of available weapon systems is: {Available} out of {force.attackSystems.Count}");
             Console.ResetColor();
         }
@@ -42,6 +43,23 @@ namespace MilitaryControlSystem
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"==============================");
+            Console.ResetColor();
+        }
+
+        public static void Print(this Organization organization)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"\n =====================>> {organization.Name} <<=====================");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("    The organization was created successfully.");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    Date of establishment: {organization.EstablishmentDate}");
+            Console.WriteLine($"    Current census: {organization.CurrentCommander}");
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(" =============================================\n");
             Console.ResetColor();
         }
 
@@ -78,6 +96,31 @@ namespace MilitaryControlSystem
             else if (color == "Yellow") Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(text);
             Console.ResetColor();
+        }
+
+        public static void PrintSuccessMessage(string target, DateTime time, Terrorist terrorist)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("========================================");
+            Console.WriteLine("     Attack successfully carried out"    );
+            Console.WriteLine("========================================");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("time     : ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(time);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Location           : ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(target);
+
+            terrorist.Pront();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("========================================");
+
+            Console.ResetColor(); 
         }
 
     }

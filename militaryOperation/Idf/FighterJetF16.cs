@@ -11,13 +11,10 @@ namespace MilitaryControlSystem
         };
 
         public FighterJetF16(string name, int ammunitionCapacity, int fuelSupply, string pilot) : base(name, ammunitionCapacity, fuelSupply)
-        {
-            Pilot = pilot;
-        }
+        { Pilot = pilot;}
 
         public override bool ExecuteStrike(string target, int fuel, int ammunition)
         {
-
             if (!CanStrike(fuel, ammunition)) return false;
             AmmunitionCapacity -= ammunition;
             FuelSupply -= fuel;

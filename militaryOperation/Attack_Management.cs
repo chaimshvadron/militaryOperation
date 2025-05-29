@@ -27,37 +27,12 @@ namespace MilitaryControlSystem
                     if (attac)
                     {
                         terrorist.IsAlive = false;
-                        PrintSuccessMessage(target, time, terrorist);
+                        PrintModel.PrintSuccessMessage(target, time, terrorist);
                         return;
                     }
                 }
             }
             Console.WriteLine("No suitable weapon system found!! ");
-        }
-
-        public void PrintSuccessMessage(string target, DateTime time, Terrorist terrorist)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("========================================");
-            Console.WriteLine("     Attack successfully carried out"    );
-            Console.WriteLine("========================================");
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("time     : ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(time);
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Location           : ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(target);
-
-            terrorist.Print();
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("========================================");
-
-            Console.ResetColor(); 
         }
 
     }

@@ -8,24 +8,7 @@ namespace MilitaryControlSystem
             EstablishmentDate = establishmentDate;
             CurrentCommander = currentCommander;
             Name = name;
-            Print();
-        }
-
-        public void Print()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"\n =====================>> {Name} <<=====================");
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("    The organization was created successfully.");
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"    Date of establishment: {EstablishmentDate}");
-            Console.WriteLine($"    Current census: {CurrentCommander}");
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(" =============================================\n");
-            Console.ResetColor();
+            this.Print();
         }
     }
 }

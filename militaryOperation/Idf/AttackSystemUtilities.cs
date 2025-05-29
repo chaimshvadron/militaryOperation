@@ -1,8 +1,8 @@
 namespace MilitaryControlSystem
 {
-    public class Http
+    class AttackSystemUtilities
     {
+
         
     }
-    
 }

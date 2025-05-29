@@ -16,7 +16,6 @@ namespace MilitaryControlSystem
                 switch (input)
                 {
                     case "1":
-
                         PrintModel.Print(">>> Running Intelligence Analysis...", "Blue");
                         controlSystem.IntelligenceAnalysis();
                         break;
