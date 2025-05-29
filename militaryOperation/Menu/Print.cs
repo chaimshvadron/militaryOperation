@@ -2,7 +2,7 @@ namespace MilitaryControlSystem
 {
     public static class PrintModel
     {
-        public static void Pront(this Terrorist terrorist)
+        public static void Print(this Terrorist terrorist)
         {
             Console.WriteLine("        =====> Tourist Information <===== ");
             Console.WriteLine($"Name:               ==>> {terrorist.Name}");
@@ -115,7 +115,7 @@ namespace MilitaryControlSystem
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(target);
 
-            terrorist.Pront();
+            terrorist.Print();
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("========================================");
