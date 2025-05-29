@@ -1,13 +1,7 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
     class Aman
     {
-        public Database Database;
-        public Aman(Database database)
-        {
-            Database = database;
-        }
-
         public int mostDangerousTerrorist()
         {
             int Score = 0;
@@ -21,7 +15,6 @@ namespace Military_control_system
                 {
                     IdTerrorist = id;
                     Score = terrorist.QualityScore();
-                    // Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Quality Score: {terrorist.QualityScore()}");
                 }
             }
             return IdTerrorist;
@@ -36,25 +29,12 @@ namespace Military_control_system
                 if (terrorist.IsAlive && Database.databaseIntelligence[id].Count > Database.databaseIntelligence[IdTerrorist].Count)
                 {
                     IdTerrorist = id;
-                    Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Intelligence: {Database.databaseIntelligence[id].Count}");
+                    // Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Intelligence: {Database.databaseIntelligence[id].Count}");
                 }
             }
             return IdTerrorist;
         }
 
-    }
-    
-    class IntelInformation
-    {
-        public int Id;
-        public string LastLocation;
-        public DateTime Timestamp = DateTime.UtcNow;
-        public IntelInformation(int IdTerrorist, string lastLocation)
-        {
-            Id = IdTerrorist;
-            LastLocation = lastLocation;
-        }
-        
     }
     
 }

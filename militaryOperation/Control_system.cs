@@ -1,25 +1,23 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
-    class ControlSystem
+    public class ControlSystem
     {
-        Database database;
         Aman aman;
         Force force;
         Attack_Management attack_Management;
         public ControlSystem(Organization organization, Organization organizationEnemy, string officerName)
         {
-            database = new();
-            initialization.InitializeDatabase(database, organizationEnemy);
+            initialization.InitializeDatabase(organizationEnemy);
 
-            aman = new(database);
+            aman = new();
             force = new(organization, initialization.initializationAttackSystem());
-            attack_Management = new(database, officerName, force);
+            attack_Management = new(officerName, force);
         }
 
         public void IntelligenceAnalysis()
         {
             int IdTerrorist = aman.mostInformation();
-            Terrorist terrorist = database.GetTerroristBiId(IdTerrorist);
+            Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The terrorist with the most intelligence =======");
             terrorist.Print();
@@ -27,7 +25,8 @@ namespace Military_control_system
         }
         public void AttackAvailability()
         {
-            force.PrintReport();
+
+            force.Print();
         }
 
         public void TargetPrioritization()
@@ -38,7 +37,7 @@ namespace Military_control_system
                 Console.WriteLine(" ===== No dangerous terrorist found =====");
                 return;
             }
-            Terrorist terrorist = database.GetTerroristBiId(IdTerrorist);
+            Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The most dangerous terrorist =======");
             terrorist.Print();
@@ -55,12 +54,12 @@ namespace Military_control_system
         public void StatusDatabase()
         {
             Console.WriteLine();
-            foreach (var item in database.databaseTerrorist)
+            foreach (var item in Database.databaseTerrorist)
             {
                 Console.WriteLine(item.Key);
                 item.Value.Print();
                 Console.WriteLine("====================");
-                foreach (var item2 in database.databaseIntelligence[item.Key])
+                foreach (var item2 in Database.databaseIntelligence[item.Key])
                 {
 
                     Console.WriteLine($"Last Location:{item2.LastLocation}   ====   Timestamp: {item2.Timestamp}");

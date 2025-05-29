@@ -1,4 +1,4 @@
-namespace Military_control_system
+namespace MilitaryControlSystem
 {
     public class Terrorist
     {
