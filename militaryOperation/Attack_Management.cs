@@ -19,7 +19,7 @@ namespace MilitaryControlSystem
             IntelInformation LatestIntelligence = Database.LatestInformation(terroristId);
             string target = LatestIntelligence.LastLocation;
 
-            foreach (AttackSystem attackSystem in Force.attackSystems)
+            foreach (AttackSystem attackSystem in Force.militaryAssets)
             {
                 if (attackSystem.TargetTypeAndWeapon.ContainsKey(target))
                 {

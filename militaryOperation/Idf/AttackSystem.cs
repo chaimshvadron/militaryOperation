@@ -5,12 +5,14 @@ namespace MilitaryControlSystem
         public string Name { get; }
         public int AmmunitionCapacity { get; set; }
         public int FuelSupply { get; set; }
+        public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
 
-        public AttackSystem(string name, int ammunitionCapacity, int fuelSupply)
+        public AttackSystem(string Name, int AmmunitionCapacity, int FuelSupply, Dictionary<string, string> TargetTypeAndWeapon)
         {
-            Name = name;
-            AmmunitionCapacity = ammunitionCapacity;
-            FuelSupply = fuelSupply;
+            this.Name = Name;
+            this.AmmunitionCapacity = AmmunitionCapacity;
+            this.FuelSupply = FuelSupply;
+            this.TargetTypeAndWeapon = TargetTypeAndWeapon;
         }
 
         public void AddFuel(int fuel)
@@ -25,17 +27,14 @@ namespace MilitaryControlSystem
 
         public bool CanStrike(int fuel, int ammunition)
         {
-            if (AmmunitionCapacity > ammunition && FuelSupply > fuel) return true;
-            else return false;
+            return AmmunitionCapacity > ammunition && FuelSupply > fuel;
         }
 
         public bool YaelAgainstTarget(string target)
         {
-            if (TargetTypeAndWeapon.ContainsKey(target)) return true;
-            return false;
+            return TargetTypeAndWeapon.ContainsKey(target);
         }
 
         abstract public bool ExecuteStrike(string target, int fuel, int ammunition);
-        abstract public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
     }
 }

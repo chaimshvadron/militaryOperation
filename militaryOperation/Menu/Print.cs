@@ -14,14 +14,14 @@ namespace MilitaryControlSystem
         public static void Print(this Force force)
         {
             int Available = 0;
-            foreach (AttackSystem attack in force.attackSystems)
+            foreach (AttackSystem attack in force.militaryAssets)
             {
                 Available += 1;
                 attack.Print();
             }
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"Organization: {force.Organization.Name}");
-            Console.WriteLine($"The number of available weapon systems is: {Available} out of {force.attackSystems.Count}");
+            Console.WriteLine($"The number of available weapon systems is: {Available} out of {force.militaryAssets.Count}");
             Console.ResetColor();
         }
 
