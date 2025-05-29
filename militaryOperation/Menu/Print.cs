@@ -2,7 +2,7 @@ namespace MilitaryControlSystem
 {
     public static class PrintModel
     {
-        public static void Pront(this Terrorist terrorist)
+        public static void Print(this Terrorist terrorist)
         {
             Console.WriteLine("        =====> Tourist Information <===== ");
             Console.WriteLine($"Name:               ==>> {terrorist.Name}");
@@ -98,7 +98,7 @@ namespace MilitaryControlSystem
             Console.ResetColor();
         }
 
-        public static void PrintSuccessMessage(string target, DateTime time, Terrorist terrorist)
+        public static void PrintAttacsSuccessMessage(string target, DateTime time, Terrorist terrorist)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("========================================");
@@ -115,7 +115,7 @@ namespace MilitaryControlSystem
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(target);
 
-            terrorist.Pront();
+            terrorist.Print();
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("========================================");

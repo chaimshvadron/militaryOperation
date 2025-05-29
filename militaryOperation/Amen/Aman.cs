@@ -9,26 +9,27 @@ namespace MilitaryControlSystem
             for (int id = 1; id < Database.databaseTerrorist.Count; id++)
             {
                 Terrorist terrorist = Database.databaseTerrorist[id];
+                int scoreTerorrist = terrorist.QualityScore();
 
-                if (terrorist.IsAlive && terrorist.QualityScore() > Score)
+                if (terrorist.IsAlive && scoreTerorrist > Score)
                 {
                     IdTerrorist = id;
-                    Score = terrorist.QualityScore();
+                    Score = scoreTerorrist;
                 }
             }
             return IdTerrorist;
         }
 
-        public int mostInformation()
+        public int MostInformation()
         {
-            int IdTerrorist = 1;
-            for (int id = 1; id < Database.databaseIntelligence.Count; id++)
+            int IdTerrorist = -1;
+            int mostInformation = 0;
+            foreach (KeyValuePair<int, List<IntelInformation>> pair in Database.databaseIntelligence)
             {
-                Terrorist terrorist = Database.databaseTerrorist[id];
-                if (terrorist.IsAlive && Database.databaseIntelligence[id].Count > Database.databaseIntelligence[IdTerrorist].Count)
+                if (pair.Value.Count > mostInformation)
                 {
-                    IdTerrorist = id;
-                    // Console.WriteLine($"terrorist name: {terrorist.Name}  ====== Intelligence: {Database.databaseIntelligence[id].Count}");
+                    IdTerrorist = pair.Key;
+                    mostInformation = pair.Value.Count;
                 }
             }
             return IdTerrorist;

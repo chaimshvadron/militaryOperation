@@ -11,23 +11,22 @@ namespace MilitaryControlSystem
             Force = force;
         }
 
-        public void AttackExecution(int terroristId)
+        public void AttackExecution(int terroristId, int fuel, int ammunition)
         {
             DateTime time = DateTime.Now;
-            Random random = new();
             Terrorist terrorist = Database.GetTerroristBiId(terroristId);
             IntelInformation LatestIntelligence = Database.LatestInformation(terroristId);
             string target = LatestIntelligence.LastLocation;
 
             foreach (AttackSystem attackSystem in Force.militaryAssets)
             {
-                if (attackSystem.TargetTypeAndWeapon.ContainsKey(target))
+                if (attackSystem.YaelAgainstTarget(target))
                 {
-                    bool attac = attackSystem.ExecuteStrike(target, random.Next(100,300), random.Next(1,5));
+                    bool attac = attackSystem.ExecuteStrike(target, fuel, ammunition);
                     if (attac)
                     {
                         terrorist.IsAlive = false;
-                        PrintModel.PrintSuccessMessage(target, time, terrorist);
+                        PrintModel.PrintAttacsSuccessMessage(target, time, terrorist);
                         return;
                     }
                 }

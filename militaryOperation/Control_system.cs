@@ -16,11 +16,11 @@ namespace MilitaryControlSystem
 
         public void IntelligenceAnalysis()
         {
-            int IdTerrorist = aman.mostInformation();
+            int IdTerrorist = aman.MostInformation();
             Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The terrorist with the most intelligence =======");
-            terrorist.Pront();
+            terrorist.Print();
 
         }
         public void AttackAvailability()
@@ -32,7 +32,7 @@ namespace MilitaryControlSystem
         public void TargetPrioritization()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
-            if (IdTerrorist == 0)
+            if (IdTerrorist < 0)
             {
                 Console.WriteLine(" ===== No dangerous terrorist found =====");
                 return;
@@ -40,14 +40,15 @@ namespace MilitaryControlSystem
             Terrorist terrorist = Database.GetTerroristBiId(IdTerrorist);
 
             Console.WriteLine(" ======= The most dangerous terrorist =======");
-            terrorist.Pront();
+            terrorist.Print();
 
         }
 
         public void AttackExecution()
         {
             int IdTerrorist = aman.mostDangerousTerrorist();
-            attack_Management.AttackExecution(IdTerrorist);
+            Random random = new();
+            attack_Management.AttackExecution(IdTerrorist, random.Next(100,300), random.Next(1,5));
 
         }
 
@@ -57,7 +58,7 @@ namespace MilitaryControlSystem
             foreach (var item in Database.databaseTerrorist)
             {
                 Console.WriteLine(item.Key);
-                item.Value.Pront();
+                item.Value.Print();
                 Console.WriteLine("====================");
                 foreach (var item2 in Database.databaseIntelligence[item.Key])
                 {
