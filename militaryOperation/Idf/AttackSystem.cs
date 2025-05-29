@@ -30,8 +30,7 @@ namespace MilitaryControlSystem
 
         public bool YaelAgainstTarget(string target)
         {
-            if (TargetTypeAndWeapon.ContainsKey(target)) return true;
-            return false;
+            return TargetTypeAndWeapon.ContainsKey(target);
         }
 
         abstract public bool ExecuteStrike(string target, int fuel, int ammunition);
