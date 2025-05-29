@@ -12,18 +12,8 @@ namespace MilitaryControlSystem
             this.Name = Name;
             this.AmmunitionCapacity = AmmunitionCapacity;
             this.FuelSupply = FuelSupply;
-        }
-
-        public void AddFuel(int fuel)
-        {
-            FuelSupply += fuel;
-        }
-
-        public void AddAmmunition(int ammunition)
-        {
-            AmmunitionCapacity += ammunition;
-        }
-
+        }    
+        
         public bool CanStrike(int fuel, int ammunition)
         {
             return AmmunitionCapacity > ammunition && FuelSupply > fuel;
