@@ -5,12 +5,14 @@ namespace MilitaryControlSystem
         public string Name { get; }
         public int AmmunitionCapacity { get; set; }
         public int FuelSupply { get; set; }
+        public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
 
-        public AttackSystem(string name, int ammunitionCapacity, int fuelSupply)
+        public AttackSystem(string name, int ammunitionCapacity, int fuelSupply, Dictionary<string, string> targetTypeAndWeapon)
         {
-            Name = name;
-            AmmunitionCapacity = ammunitionCapacity;
-            FuelSupply = fuelSupply;
+            this.Name = name;
+            this.AmmunitionCapacity = ammunitionCapacity;
+            this.FuelSupply = fuelSupply;
+            this.TargetTypeAndWeapon = targetTypeAndWeapon;
         }
 
         public void AddFuel(int fuel)
@@ -34,6 +36,5 @@ namespace MilitaryControlSystem
         }
 
         abstract public bool ExecuteStrike(string target, int fuel, int ammunition);
-        abstract public Dictionary<string, string> TargetTypeAndWeapon { get; set; }
     }
 }
