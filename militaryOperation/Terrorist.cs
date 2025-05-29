@@ -19,17 +19,22 @@ namespace MilitaryControlSystem
         public int QualityScore()
         {
             int QualityScore = 0;
+            Dictionary<string, int> weaponScores = new Dictionary<string, int>
+                {
+                    { "knife", 1 },
+                    { "gun", 2 }, { "Pistol", 2 }, { "Grenade", 2 },
+                    { "AK-47", 3 }, { "M16", 3 }, { "Sniper", 3 },
+                    { "RPG", 4 }, { "Explosives", 4 },
+                    { "Machine Gun", 5 }
+                };
+
             foreach (string Weapon in Weapons)
             {
-                QualityScore += Weapon switch
+
+                if (weaponScores.TryGetValue(Weapon, out int score))
                 {
-                    "knife" => 1,
-                    "gun" or "Pistol" or "Grenade"=> 2,
-                    "AK-47" or "M16" or "Sniper" => 3,
-                    "RPG" or "Explosives"=> 4,
-                    "Machine Gun" => 5,
-                    _ => 1
-                };
+                    QualityScore += score;
+                }
             }
             return QualityScore * Rank;
         }
